@@ -1,14 +1,17 @@
 import N
 from COM_NN_D import COM_NN_D
-
+import copy
 
 # by Maxim Makarov 1308
-def SUB_NN_N(n1, n2):
+def SUB_NN_N(n11, n21):
     '''Эта функция вычитает из числа n1 число n2.
         Если n1<n2 вызывает ошибку AssertionError.
         n1: N.natural
         n2: N.natural
     '''
+    n1 = copy.deepcopy(n11)
+    n2 = copy.deepcopy(n21)
+
     k = 0
     assert COM_NN_D(n1, n2) == 2 or COM_NN_D(n1, n2) == 0
     n2.numbers = [0] * (n1.digit - n2.digit) + n2.numbers

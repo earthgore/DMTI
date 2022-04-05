@@ -1,13 +1,14 @@
 import N
-
+import copy
 
 # by Maxim Makarov 1308
-def MUL_ND_N(a, n):
+def MUL_ND_N(a1, n):
     '''Эта функция умножает число на цифру.
         если n не является цифрой, вызывает ошибку AssertionError
         a: N.natural
         n: int
     '''
+    a = copy.deepcopy(a1)
     assert -1 < n < 10
     a.numbers = [0] + [0] + a.numbers
     k = 0

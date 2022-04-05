@@ -1,13 +1,15 @@
 import N
 from COM_NN_D import COM_NN_D
-
+import copy
 
 # by Maxim Makarov 1308
-def ADD_NN_N(n1, n2):
-    '''Эта функция складывает из числа n1 и n2.
+def ADD_NN_N(n11, n21):
+    '''Эта функция складывает числа n1 и n2.
         n1: N.natural
         n2: N.natural
     '''
+    n1 = copy.deepcopy(n11)
+    n2 = copy.deepcopy(n21)
     k = 0
     if (COM_NN_D(n1, n2) == 1):
         n1, n2 = n2, n1

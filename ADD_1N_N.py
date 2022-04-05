@@ -1,11 +1,12 @@
 import N
-
+import copy
 
 # by Maxim Makarov 1308
-def ADD_1N_N(n):
+def ADD_1N_N(n1):
     '''Эта функция прибавляет единицу к n.
         n: N.natural
     '''
+    n = copy.deepcopy(n1)
     i = 1
     n.numbers = [0] + n.numbers
     while n.numbers[-i] == 9:
