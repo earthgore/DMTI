@@ -17,3 +17,4 @@ def ADD_1N_N(n1):
         n.numbers = n.numbers[1:]
     n.digit = len(n.numbers)
     return n
+
