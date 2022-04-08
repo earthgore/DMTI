@@ -148,7 +148,6 @@ def ADD_ZZ_Z(z1, z2):
            x = SUB_NN_N(n1_2,n1_1)
            TRANS_N_Z(x)
            z1_1.sign = 1
-    z1_1.showInfo()
     return z1_1
 
 def SUB_ZZ_Z(z1, z2):
@@ -183,7 +182,6 @@ def SUB_ZZ_Z(z1, z2):
         TRANS_N_Z(x)
         z1_1.sign = 1
 
-    z1_1.showInfo()
     return z1_1
 
 
@@ -203,7 +201,6 @@ def MUL_ZZ_Z(z1, z2):
         x = MUL_NN_N(n1_1,n1_2)
         TRANS_N_Z(x)
         z1_1.sign = 1
-    z1_1.showInfo()
     return z1_1
 
 
@@ -224,15 +221,15 @@ def DIV_ZZ_Z(z1, z2):
         x = DIV_NN_N(n1_1,n1_2)
         TRANS_N_Z(x)
         z1_1.sign = 1
-    z1_1.showInfo()
     return z1_1
 
 
-"""
-def MOD_ZZ_Z(z1, z2):
-    x = SUB_ZZ_Z(z1, z2 * DIV_ZZ_Z(z1, z2))
-    x.sign = 0
-    x.showInfo()
-    return x
 
-zx = MOD_ZZ_Z(z1, z2)"""
+def MOD_ZZ_Z(z1, z2):
+    x = SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, DIV_ZZ_Z(z1, z2)))
+    TRANS_N_Z(x)
+    z1_1.sign = 0
+    z1_1.showInfo()
+    return z1_1
+
+zx = MOD_ZZ_Z(z1, z2)
