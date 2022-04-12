@@ -14,28 +14,17 @@ class integers:
         self.sign = b
         self.numbers = [int(i) for i in str]
         self.digit = len(str)
-
-
     def __str__(self):
         if self.sign == 1:
             c = '-'
         else:
             c = ''
         return c + ''.join([str(i) for i in self.numbers])
-
-
     def showInfo(self):
         print(self.sign)
         print(self.numbers)
         print(self.digit)
 
-
-
-
-str0 = input("Введите первое число со знаком + или -:")
-z1 = integers(str0)
-str01 = input("Введите второе число со знаком + или -:")
-z2 = integers(str01)
 
 #ABS_Z_N_by_Alexandr_Varfolomeev_1308
 def ABS_Z_N(z):
@@ -47,8 +36,6 @@ def ABS_Z_N(z):
     n.numbers = copy(z.numbers)
     n.digit = len(n.numbers)
     return n
-n1_1 = ABS_Z_N(z1)
-n1_2 = ABS_Z_N(z2)
 
 #POZ_Z_D_by_Antom_Muraveov_1308
 def POZ_Z_D(z1):
@@ -75,12 +62,12 @@ def MUL_ZM_Z(z1):
     """
     Функция получает на вход целое число любого знака.
     Функция проверяет знак и меняет его на проивоположный.
-
     """
-    if z1.sign == 1:
-        z1.sign = 0
-    else:
-        z1.sign = 1
+    if z1.numbers != [0]:
+        if z1.sign == 1:
+            z1.sign = 0
+        else:
+            z1.sign = 1
     return z1
 
 
@@ -124,7 +111,6 @@ def ADD_ZZ_Z(z1, z2):
     if x1 == x2 and x1 == 2:
         """Если оба числа положительные, то они просто скаладываются"""
         return TRANS_N_Z(ADD_NN_N(n1,n2))
-
     elif x1 == x2 and x1 == 1:
         """Если оба числа отрицательные, то они скалдваются и у суммы меняется знак"""
         return MUL_ZM_Z(TRANS_N_Z(ADD_NN_N(n1,n2)))
@@ -142,6 +128,8 @@ def ADD_ZZ_Z(z1, z2):
        elif k == 2 and x2 == 1:
            """Если первое число больше второго, а второе число отрицательное, то возвращается их разность"""
            return TRANS_N_Z(SUB_NN_N(n1, n2))
+       elif k == 0:
+           return integers("0")
        elif k != 2 and x2 == 1:
            """Если первое число не больше второго, а второе число отрицательное, то возвращается их разность с обратным знаком"""
            return MUL_ZM_Z(TRANS_N_Z(SUB_NN_N(n2,n1)))
@@ -156,18 +144,19 @@ def SUB_ZZ_Z(z1, z2):
     Функция получает на вход два целых числа любого знака.
     После конвертации чисел в натуральные, происходят операции
       сложения и вычитания из блока натуральных чисел.
-
         """
     n1 = ABS_Z_N(z1)
     n2 = ABS_Z_N(z2)
     x1 = POZ_Z_D(z1)
     x2 = POZ_Z_D(z2)
-    k = COM_NN_D(n1_1, n1_2)
+    k = COM_NN_D(n1, n1)
     if x1 == x2 and x1 == 1:
         if k == 2:
             """Если оба числа отрицательные и первое число больше второго, возвращается их разность с противоположным знаком"""
             return MUL_ZM_Z(TRANS_N_Z(SUB_NN_N(n1, n2)))
-
+        elif k == 0:
+            """Если оба числа равны, возвращается ноль"""
+            return integers("0")
         else:
             """Если оба числа отрицательные и второе число больше первого, возвращается разность второго и первого"""
             return TRANS_N_Z(SUB_NN_N(n2, n1))
@@ -184,6 +173,9 @@ def SUB_ZZ_Z(z1, z2):
        if k == 2:
         """Если оба числа положительные и первое больше второго, возвращается их разность"""
         return TRANS_N_Z(SUB_NN_N(n1, n2))
+       elif k == 0:
+           """Если оба числа равны, возвращается ноль"""
+           return integers("0")
        else:
         """Если оба числа положительные и второе больше первого, возвращается разность второго и ервого с обратным знаком"""
         return  MUL_ZM_Z(TRANS_N_Z(SUB_NN_N(n2, n1)))
@@ -251,3 +243,5 @@ def MOD_ZZ_Z(z1, z2):
     Используя формулу a = b * q + r,  где r - остаток,выражается r
         """
     return SUB_ZZ_Z(z1, MUL_ZZ_Z(z2, DIV_ZZ_Z(z1, z2)))
+
+
